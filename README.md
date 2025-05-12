@@ -7,6 +7,7 @@
 [![Last Updated](https://img.shields.io/github/last-commit/houllette/ex_zip_protect.svg)](https://github.com/houllette/ex_zip_protect/commits/main)
 
 Protect your Phoenix/Plug applications from low‑effort scrapers, scanners, and spam bots by serving them **compressed "zip bombs"**—ultra‑small payloads that expand to hundreds of MB/GB and exhaust their memory.
+
 ExZipProtect does **zero detection itself**; it simply makes it trivial for *you* to return a pre‑built bomb when your own heuristics say, “Nuke this request.”
 
 ---
