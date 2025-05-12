@@ -95,11 +95,11 @@ config :ex_zip_protect,
 ### Keys
 
 | Key               | Type         | Default | Notes                                                                                                             |
-| ----------------- | ------------ | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `enabled?`        | bool         | `true`  | When `false`, `Bomb.send/2` is a no‑op.                                                                           |
-| `rotation`        | atom         | `:none` | Distribution strategy across a list of bombs for the same level.                                                  |
-| `levels`          | keyword      | —       | Map severity `level => [bomb_spec, …]`.                                                                           |
-| `bypass_header`   | string | nil | nil     | If set, _any_ request containing that header bypasses bombs. Leave `nil` (or comment out) to disable the feature. |
+| ----------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `enabled?`        | bool    | `true`  | When `false`, `Bomb.send/2` is a no‑op.                                                                           |
+| `rotation`        | atom    | `:none` | Distribution strategy across a list of bombs for the same level.                                                  |
+| `levels`          | keyword | —       | Map severity `level => [bomb_spec, …]`.                                                                           |
+| `bypass_header`   | string  | nil     | If set, _any_ request containing that header bypasses bombs. Leave `nil` (or comment out) to disable the feature. |
 
 ### Bomb spec
 

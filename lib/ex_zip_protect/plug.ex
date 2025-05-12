@@ -49,11 +49,22 @@ defmodule ExZipProtect.Plug do
     Enum.reduce(headers, conn, fn {k, v}, acc -> put_resp_header(acc, k, v) end)
   end
 
-  defp maybe_put_length(conn, %{bytes: bytes}) when is_integer(bytes) do
-    put_resp_header(conn, "content-length", Integer.to_string(bytes))
-  end
+  defp maybe_put_length(conn, spec) do
+    len =
+      spec.bytes ||
+        case spec.source do
+          {:file, path} -> File.stat!(path).size
+          {:s3, _kw} -> Map.get(spec, :s3_size)
+          {:url, _url} -> Map.get(spec, :url_size)
+          _ -> nil
+        end
 
-  defp maybe_put_length(conn, _), do: conn
+    if is_integer(len) do
+      put_resp_header(conn, "content-length", Integer.to_string(len))
+    else
+      conn
+    end
+  end
 
   # True if the request contains the user‑configured bypass header.
   defp bypass?(conn) do
